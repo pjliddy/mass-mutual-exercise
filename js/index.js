@@ -13,14 +13,14 @@ function getData (url) {
     url: url
   })
   .done(function(data) {
-    console.log(data.response.docs);
+    handleData(data.response.docs);
   })
   .fail(function(err) {
     console.log(err);
   });
 };
 
-function parseData (data) {
+function handleData (data) {
   storyData = data;
   console.log(storyData);
 }

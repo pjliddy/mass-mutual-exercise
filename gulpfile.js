@@ -24,7 +24,7 @@ const htmlSrc = '*.html';
 const htmlDest = distDest;
 
 // source path for JavaScript files
-const jsonSrc = '*.json';
+const jsonSrc = 'exercise-sample-data.json';
 // dest path for JavaScript files
 const jsonDest = distDest;
 
