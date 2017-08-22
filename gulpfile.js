@@ -24,7 +24,12 @@ const htmlSrc = '*.html';
 const htmlDest = distDest;
 
 // source path for JavaScript files
-const jsSrc = 'scripts/*.js';
+const jsonSrc = '*.json';
+// dest path for JavaScript files
+const jsonDest = distDest;
+
+// source path for JavaScript files
+const jsSrc = 'js/*.js';
 // dest path for JavaScript files
 const jsDest = distDest + 'js/';
 
@@ -54,7 +59,8 @@ function copy(src, dest) {
 gulp.task('default', [
   'sass',
   'js',
-  'html'
+  'html',
+  'json'
 ]);
 
 // Compile SCSS files from to dist/css/
@@ -75,6 +81,11 @@ gulp.task('js', function() {
   return copy(jsSrc, jsDest);
 });
 
+// Copy json files to dist
+gulp.task('json', function() {
+  return copy(jsonSrc, jsonDest);
+});
+
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
@@ -91,7 +102,6 @@ gulp.task('serve', ['browserSync', 'default'], function() {
   gulp.watch(htmlSrc, ['html']);
   gulp.watch(jsSrc, ['js']);
   gulp.watch(sassSrc, ['sass']);
-
 
   // Reload the browser whenever files change
   gulp.watch(htmlSrc, browserSync.reload)
