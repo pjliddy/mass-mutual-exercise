@@ -9,17 +9,21 @@
   </head>
   <body>
     <header>
-      <div class="logo">The Times</div>
-      <input class="search" placeholder="Search" />
+      <div class="header-left"></div>
+      <div class="header-center">The Times</div>
+      <div class="header-right search">
+        <input placeholder="Search" />
+      </div>
+      <div class="clearfix"></div>
     </header>
     <nav>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">World</a></li>
-        <li><a href="#">U.S.</a></li>
-        <li><a href="#">Politics</a></li>
-        <li><a href="#">N.Y.</a></li>
-        <li><a href="#">More</a></li>
+        <li class="active"><a href="#" >Home</a>
+        <li><a href="#">World</a>
+        <li><a href="#">U.S.</a>
+        <li><a href="#">Politics</a>
+        <li><a href="#">N.Y.</a>
+        <li><a href="#">More</a>
       </ul>
     </nav>
     <div class="content">
@@ -39,6 +43,9 @@
 
     <!-- jQuery CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- FontAwesome -->
+    <script src="https://use.fontawesome.com/741beae362.js"></script>
 
     <!-- Local JavaScript -->
     <script src="js/index.js"></script>

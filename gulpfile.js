@@ -33,6 +33,11 @@ const jsSrc = 'js/*.js';
 // dest path for JavaScript files
 const jsDest = distDest + 'js/';
 
+// source path for image files
+const imgSrc = 'img/*.*';
+// dest path for JavaScript files
+const imgDest = distDest + 'img/';
+
 
 // source path for SASS/SCSS files
 const sassSrc = 'scss/*.scss';
@@ -60,7 +65,8 @@ gulp.task('default', [
   'sass',
   'js',
   'html',
-  'json'
+  'json',
+  'images'
 ]);
 
 // Compile SCSS files from to dist/css/
@@ -86,6 +92,10 @@ gulp.task('json', function() {
   return copy(jsonSrc, jsonDest);
 });
 
+// Copy image files to dist
+gulp.task('images', function() {
+  return copy(imgSrc, imgDest);
+});
 
 // Configure the browserSync task
 gulp.task('browserSync', function() {
