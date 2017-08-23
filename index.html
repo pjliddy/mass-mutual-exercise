@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>The Times</title>
-    <link href="css/styles.css" rel="stylesheet">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Times</title>
+  <link href="css/styles.css" rel="stylesheet">
+</head>
 
-  </head>
-  <body>
-    <header>
-      <div class="header-left"></div>
-      <div class="header-center">The Times</div>
-      <div class="header-right search">
-        <input placeholder="Search" />
-      </div>
-      <div class="clearfix"></div>
-    </header>
-    <nav>
-      <ul>
-        <li class="active"><a href="#" >Home</a>
-        <li><a href="#">World</a>
-        <li><a href="#">U.S.</a>
-        <li><a href="#">Politics</a>
-        <li><a href="#">N.Y.</a>
-        <li><a href="#">More</a>
-      </ul>
-    </nav>
-    <div class="content">
-      <h1>Top Stories</h1>
-      <div class="features">
-        <div class="primary">
-          primary
-        </div>
-        <div class="secondary">
-          secondary
-        </div>
-      </div>
-      <div class="article-list">
-        articles
-      </div>
+<body>
+  <header>
+    <div class="header-left"></div>
+    <div class="header-center">The Times</div>
+    <div class="header-right">
+      <input class="search" placeholder="Search" />
     </div>
+    <!-- <div class="clearfix"></div> -->
+  </header>
+  <nav>
+    <ul>
+      <li ><a href="#" class="active">Home</a>
+      <li><a href="#">World</a>
+      <li><a href="#">U.S.</a>
+      <li><a href="#">Politics</a>
+      <li><a href="#">N.Y.</a>
+      <li><a href="#">More</a>
+    </ul>
+  </nav>
+  <div class="content">
+    <h1>Top Stories</h1>
 
-    <!-- jQuery CDN -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="feature-primary"></div>
+    <div class="features-secondary"></div>
+    <div class="article-list"></div>
+  </div>
 
-    <!-- FontAwesome -->
-    <script src="https://use.fontawesome.com/741beae362.js"></script>
+  <!-- jQuery CDN -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <!-- Local JavaScript -->
-    <script src="js/index.js"></script>
-  </body>
+  <!-- FontAwesome -->
+  <script src="https://use.fontawesome.com/741beae362.js"></script>
+
+  <!-- Local JavaScript -->
+  <script src="js/index.js"></script>
+</body>
 </html>
