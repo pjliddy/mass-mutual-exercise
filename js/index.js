@@ -39,6 +39,7 @@ function getData (url) {
 };
 
 function renderHome () {
+  $('h1').html('Top Stories');
   // render primary featured article
   if (storyData.length > 0) {
     renderPrimaryFeature(storyData[0]);

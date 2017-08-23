@@ -98,7 +98,7 @@ nav {
   max-width: 1200px;
 }
 
-@media(min-width:1200px) {
+@media(min-width:1260px) {
   .content {
     margin: 0 auto;
   }
@@ -115,11 +115,9 @@ h2{
 }
 
 .feature-primary {
-  // border: 1px solid #888;
   box-shadow: $article-shadow;
-  float: left;
-
-  width: calc(100% - 330px);
+  float: none;
+  width: 100%;
 
   .hero {
     background: $feature-shade;
@@ -148,9 +146,7 @@ h2{
 }
 
 .features-secondary {
-  float: right;
-  // width: calc(33.33% - 15px);
-  width: 300px;
+  
 
   .feature-secondary {
     // border: 1px solid #888;
@@ -170,6 +166,18 @@ h2{
 
   .feature-secondary:last-of-type {
     margin-top: 30px;
+  }
+}
+
+@media(min-width:920px) {
+  .feature-primary {
+    float: left;
+    width: calc(100% - 330px);
+  }
+
+  .features-secondary {
+    float: right;
+    width: 300px;
   }
 }
 
