@@ -7,7 +7,18 @@ $font-size-base: 16px;
 $font-size-logo: 24px;
 $font-family-base: 'Open Sans';
 $font-family-serif: 'Source Serif Pro';
+$font-size-byline: 14px;
+$line-height-base: 1.4;
 
 // color variables
+$white: #fff;
 $header-background: #263238;
 $header-color: #fff;
+$feature-shade: #c1c9d5;
+$byline-color: #aaacac;
+$timestamp-color: #001157;
+
+// shadows
+$shadow-color: rgba(237, 237, 237, .8);
+$nav-shadow: 0 3px 3px $shadow-color;
+$article-shadow: 1px 1px 2px 2px $shadow-color;
