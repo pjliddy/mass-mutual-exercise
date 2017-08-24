@@ -55,6 +55,10 @@ function renderHome () {
   }
 };
 
+// function renderTitle(title) {
+//   $('.content').append('<h1>' + title + '</h1>')
+// }
+
 // render primary feature on home page
 function renderPrimaryFeature(articleData) {
   $('.feature-primary').append('<div class="hero"></div>');
