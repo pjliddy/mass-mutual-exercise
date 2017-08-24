@@ -12,12 +12,13 @@ $(function(){
 // event handlers
 function handleEvents() {
   $(document).on('click', '.title a', showArticle);
+  $(document).on('click', '.img-link', showArticle);
 };
 
 // override default link behavior and show article at event.target.href
 function showArticle(event) {
   event.preventDefault();
-  console.log(event.target.href);
+  console.log(event.currentTarget.href);
 };
 
 // make jQuery AJAX call to get json data file
@@ -59,15 +60,14 @@ function renderPrimaryFeature(articleData) {
   $('.feature-primary').append('<div class="hero"></div>');
 
   $('.feature-primary .hero').append(
-    '<img class="thumbnail" src="' +
-    getThumbnail(articleData) +
-    '"/>'
+    '<a class="img-link" href="' + articleData.web_url + '">' +
+    '<img class="thumbnail" src="' + getThumbnail(articleData) + '"/>' +
+    '</a>'
   );
 
   $('.feature-primary .hero').append(
     '<h2 class="title"><a href="' +
-    articleData.web_url +
-    '" target="_blank">' +
+    articleData.web_url + '">' +
     articleData.headline.main +
     '</a></h2>'
   );
@@ -92,6 +92,7 @@ function renderPrimaryFeature(articleData) {
 // render series of secondary features on home page
 function renderSecondaryFeatures(articles) {
   articles.forEach((article, i) => renderSecondaryFeature(article, i));
+  $('.features-secondary').append('<div class="clearfix"></div>');
 };
 
 // render secondary feature
@@ -104,17 +105,13 @@ function renderSecondaryFeature(articleData, i) {
 
   // add HTML elements for feature
   $(articleDiv).append(
-    '<h2 class="title"><a href="' +
-    articleData.web_url +
-    '" target="_blank">' +
-    articleData.headline.main +
-    '</a></h2>'
+    '<h2 class="title"><a href="' + articleData.web_url + '">' + articleData.headline.main + '</a></h2>'
   );
 
   $(articleDiv).append(
     '<p class="byline"><span class="author">' +
     articleData.byline.original.toLowerCase() +
-    '</span><br /><span class="timestamp">' +
+    '</span> <span class="timestamp">' +
     formatTimestamp(articleData.pub_date) +
     '</span></p>'
   );
@@ -135,37 +132,31 @@ function renderArticle(articleData, i) {
 
   // add HTML elements for article
   $(articleDiv).append(
-    '<img class="thumbnail" src="' +
-    getThumbnail(articleData) +
-    '"/>'
+    '<a class="img-link" href="' + articleData.web_url + '">' +
+    '<img class="thumbnail" src="' + getThumbnail(articleData) + '"/>' +
+    '</a>'
   );
 
-  $(articleDiv).append('<div class="wrapper"></div>');
-
-  $(articleDiv).find('.wrapper').append(
-    '<h2 class="title"><a href="' +
-    articleData.web_url +
-    '" target="_blank">' +
+  $(articleDiv).append(
+    '<h2 class="title"><a href="' + articleData.web_url + '">' +
     articleData.headline.main +
     '</a></h2>'
   );
 
-  $(articleDiv).find('.wrapper').append(
-    '<p class="lead-para">' +
-    articleData.lead_paragraph +
-    '</p>'
+  $(articleDiv).append(
+    '<p class="lead-para">' + articleData.lead_paragraph + '</p>'
   );
 
   if (articleData.byline.original) {
-    $(articleDiv).find('.wrapper').append(
-      '<p class="byline"><span class="author">' +
+    $(articleDiv).append(
+      '<span class="byline"><span class="author">' +
       articleData.byline.original.toLowerCase() +
       '</span> <span class="timestamp">' +
       formatTimestamp(articleData.pub_date) +
-      '</span></p>'
+      '</span></span>'
     );
   } else {
-    $(articleDiv).find('.wrapper').append(
+    $(articleDiv).append(
       '<p class="byline"><span class="author">By ' +
       articleData.source.toLowerCase() +
       '</span> <span class="timestamp">' +
@@ -192,13 +183,13 @@ function getThumbnail (articleData) {
 function formatTimestamp(dateString) {
   const date = new Date(dateString);
   const options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    // year: "numeric",
+    // month: "long",
+    // day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     timeZoneName: "short"
   };
 
-  return date.toLocaleDateString("en-us", options);
+  return date.toLocaleTimeString("en-us", options);
 };
