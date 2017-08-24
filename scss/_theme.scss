@@ -1,6 +1,7 @@
+// Global Styles
 
-html,
-body {
+body,
+html {
   font-family: $font-family-base;
   font-size: $font-size-base;
   line-height: $line-height-base;
@@ -26,12 +27,17 @@ h6 {
 a {
   color: $black;
   text-decoration: none;
+  cursor: pointer;
 }
 
 a:hover {
   color: $nav-active-color;
 }
 
+.clearfix {
+  clear: both;
+}
+// Header Styles
 header {
   background: $header-background;
   box-sizing: border-box;
@@ -41,9 +47,9 @@ header {
   padding: 24px 0;
   white-space: nowrap;
 
+  .header-center,
   .header-left,
-  .header-right,
-  .header-center {
+  .header-right {
     display: inline-block;
     width: $one-third;
   }
@@ -70,47 +76,115 @@ header {
     }
   }
 }
-
+// Navbar Styles
 nav {
-  text-align: center;
   box-shadow: $nav-shadow;
+  height: auto;
+  min-height: 50px;
+  // overflow: hidden;
+  text-align: center;
+  // position: relative;
+
+  .nav-icon {
+    display: inline-block;
+    // float: right;
+    position: absolute;
+    right: 0;
+    margin-right: $margin-default;
+    line-height: 50px;
+  }
 
   ul {
-    margin: 0 $margin-default;
+    display: none;
     list-style-type: none;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 1200px;
     padding: 0;
 
     li {
-      box-sizing: border-box;
-      display: inline-block;
-      padding-bottom: 10px;
-      width: $one-sixth;
+      // display:none;
+      // float: left;
+      // margin-right: 1px;
+      a {
+        // min-width:140px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        font-weight: 600;
+        // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        // color: #fff;
+        // background: #2f3036;
+        // text-decoration: none;
+      }
     }
+  }
 
-    li > a {
-      text-decoration: none;
+  .responsive {
+    display: block;
+    height: auto;
+    padding-top: 50px;
+
+    li {
+      a {
+        // display: block;
+      }
     }
-
-    .active {
-      border-bottom: 3px solid $nav-active-color;
-      padding: 0 2.5em;
+    li:first-of-type {
+      border-top: 1px solid $shadow-color;
     }
   }
 }
+
+@media(min-width: 640px) {
+  nav {
+    ul {
+      margin: 0 $margin-default;
+      display: block;
+
+      li {
+        display: inline-block;
+        width: calc(100% / 6);
+
+        a {
+          display: inline-block;
+        }
+      }
+    }
+
+    .nav-icon {
+      display: none;
+    }
+  }
+  // nav {
+  //   a {
+  //     display: block;
+  //   }
+  //
+  //   .nav-icon {
+  //     display: none;
+  //   }
+  //
+  // }
+}
+@media(min-width: 1260px) {
+  nav {
+    ul {
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+  }
+}
+// Content Area Styles
 
 .content {
   margin: 0 $margin-default;
   max-width: 1200px;
 }
-
 @media(min-width:1260px) {
   .content {
     margin: 0 auto;
   }
 }
-
-// home page content styles
 
 h1 {
   margin-bottom: $margin-default;
@@ -133,9 +207,7 @@ h2 {
 .thumbnail {
   object-fit: cover;
 }
-
-// feature story layouts
-
+// Primary Feature Styles
 .feature-primary {
   box-shadow: $article-shadow;
   margin-bottom: $margin-default;
@@ -170,7 +242,7 @@ h2 {
     padding: 24px 20px;
   }
 }
-
+// Secondary Feature Styles
 .features-secondary {
   .feature-secondary {
     box-shadow: $article-shadow;
@@ -200,7 +272,7 @@ h2 {
     margin-top: $margin-default;
   }
 }
-
+// Article List Styles
 .article-list {
   .article {
     box-shadow: $article-shadow;
@@ -231,7 +303,7 @@ h2 {
     }
   }
 }
-
+// Responsive Content Layout Styles
 @media(min-width: 520px) {
   .feature-primary .hero img {
     display: inline-block;
@@ -249,7 +321,6 @@ h2 {
         height: $thumbnail-size;
         margin: -24px 20px -24px -20px;
         width: $thumbnail-size;
-
       }
 
       .byline {
@@ -262,7 +333,6 @@ h2 {
     }
   }
 }
-
 @media(min-width:640px) {
   .feature-primary {
     margin-bottom: $margin-default;
@@ -282,9 +352,7 @@ h2 {
   .feature-secondary:last-of-type {
     margin-bottom: 0;
   }
-
 }
-
 @media(min-width:920px) {
   .feature-primary {
     float: left;
@@ -321,25 +389,6 @@ h2 {
         max-height: 66px;
         overflow: hidden;
       }
-
-      // img {
-      //   float: left;
-      //   height: $thumbnail-size;
-      //   margin: -24px 20px -24px -20px;
-      //   width: $thumbnail-size;
-      // }
     }
   }
-}
-
-
-
-
-
-
-// utility styles
-
-
-.clearfix {
-  clear: both;
 }

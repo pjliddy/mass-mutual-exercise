@@ -13,6 +13,7 @@ $(function(){
 function handleEvents() {
   $(document).on('click', '.title a', showArticle);
   $(document).on('click', '.img-link', showArticle);
+  $(document).on('click', '.nav-icon', toggleNav);
 };
 
 // override default link behavior and show article at event.target.href
@@ -20,6 +21,15 @@ function showArticle(event) {
   event.preventDefault();
   console.log(event.currentTarget.href);
 };
+
+function toggleNav () {
+  console.log('toggle nav');
+  if ($('nav ul').hasClass('responsive')) {
+    $('nav ul').removeClass('responsive');
+  } else {
+    $('nav ul').addClass('responsive');
+  };
+}
 
 // make jQuery AJAX call to get json data file
 function getData (url) {
