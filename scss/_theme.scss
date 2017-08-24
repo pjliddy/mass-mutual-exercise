@@ -37,6 +37,7 @@ a:hover {
 .clearfix {
   clear: both;
 }
+
 // Header Styles
 
 header {
@@ -74,8 +75,6 @@ header {
   top: -4px;
 
   input {
-    // margin: 0 $margin-default 0 0;
-    // padding-left: 40px;
     background-color: $input-background;
     border: 0;
     border-radius: $input-border-radius;
@@ -435,26 +434,12 @@ h2 {
 }
 
 // Article iFrame Styles
-.iframe-container {
-  border: 1px solid $black;
-  height: 100vh;
-  // height: auto;
-  // position: relative;
-  // margin: 0;
-  // min-height: 100vh;
-  // width: 100%;
-  // overflow: hidden;
-  // max-width: 1170px;
-}
 
 iframe {
   border: 1px solid $black;
   display: block;
   height: 100vh;
   margin: 0 0 $margin-default;
-  // max-width: 1200px;
-  // overflow: hidden;
-  // position: relative;
   width: 100%;
 }
 

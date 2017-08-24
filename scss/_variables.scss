@@ -3,8 +3,10 @@ $margin-none: 0;
 $margin-default: 30px;
 $margin-heading: 45px;
 $header-height: 82px;
-$secondary-feature-width: 300px;
-$secondary-column-width: ($secondary-feature-width + $margin-default);
+$nav-height: 50px;
+$one-sixth: 16.666%;
+$one-third: 33.33%;$secondary-feature-width: 300px;
+$secondary-column-width: calc(#{$secondary-feature-width} + #{$margin-default});
 $thumbnail-size: 225px;
 
 // font variables
@@ -32,10 +34,6 @@ $white: #fff;
 // shadow varialbes
 $article-shadow: 0 0 3px 3px $shadow-color;
 $nav-shadow: 0 3px 3px $shadow-color;
-
-// layout variables
-$one-sixth: 16.666%;
-$one-third: 33.33%;
 
 // input field variables
 $input-border-radius: 21px;

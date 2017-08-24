@@ -15,56 +15,31 @@ function handleEvents() {
   $(document).on('click', '.img-link', showArticle);
   $(document).on('click', '.nav-icon', toggleNav);
   $(document).on('click', '.breadcrumbs a', renderHome);
-  // $('#iframe').load(setIframeHeight);
-  // $('#iframe').ready(setIframeHeight);
 };
 
-function setIframeHeight() {
-  console.log ('iframe loaded');
+// make jQuery AJAX call to get json data file
+function getData (url) {
+  $.ajax({
+    dataType: "json",
+    url: url
+  })
 
-  // const frame = $('#iframe');
-  // frame.height(frame.contents().height());
-  // frame.height(frame.contents().height());
+  // handle successful promise result
+  .done(function(data) {
+    // save data is global array of stories
+    storyData = data.response.docs
+    renderHome();
+  })
 
-  // var iFrame = $('iframe');
-  //
-  // $(iFrame).height( $(iFrame).contents().find("body").height() );
-  // if(iFrame) {
-  //   // here you can make the height, I delete it first, then I make it again
-  //   iFrame.height = "";
-  //   iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
-  // }
-}
-
-// override default link behavior and show article at event.target.href
-function showArticle(event) {
-  // const element = $(event.currentTarget).get(0);
-  const i = $(event.currentTarget).data('id');
-  const articleData = storyData[i];
-
-  event.preventDefault();
-
-  $('.content').html(
-    '<div class="breadcrumbs"><span><a href="#">Home</a><span class="chevron"><span> > </span></span><span class="title">'+ articleData.headline.main + '</span></div>'
-  );
-
-  $('.content').append('<h1>' + articleData.headline.main + '</h1>');
-
-  $('.content').append(
-    '<p class="article-byline"><span class="author">' +
-    articleData.byline.original.toLowerCase() +
-    '</span> <span class="timestamp">' +
-    formatTimestamp(articleData.pub_date) +
-    '</span></p>'
-  );
-  // $('.content').append('<div class="iframe-container"></div>');
-
-  $('.content').append('<iframe id="iframe" height="100%" src="' + articleData.web_url + '"></iframe>');
-
-  $('#iframe').ready(setIframeHeight);
+  // handle unsuccessful promise result
+  .fail(function(err) {
+    console.log(err);
+  });
 };
 
-// toggle responsive nav
+
+
+// Toggle responsive nav
 function toggleNav () {
   console.log('toggle nav');
   if ($('nav ul').hasClass('responsive')) {
@@ -74,24 +49,7 @@ function toggleNav () {
   };
 }
 
-// make jQuery AJAX call to get json data file
-function getData (url) {
-  $.ajax({
-    dataType: "json",
-    url: url
-  })
-  // handle successful promise result
-  .done(function(data) {
-    // save data is global array of stories
-    storyData = data.response.docs
-    renderHome();
-  })
-  // handle unsuccessful promise result
-  .fail(function(err) {
-    console.log(err);
-  });
-};
-
+// Generate Home Page view
 function renderHome () {
   $('.content').html('<h1>Top Stories</h1>');
   $('.content').append('<div class="feature-primary"></div>');
@@ -99,7 +57,6 @@ function renderHome () {
   $('.content').append('<div class="clearfix"></div>');
   $('.content').append('<div class="article-list"></div>');
 
-  // $('h1').html('Top Stories');
   // render primary featured article
   if (storyData.length > 0) {
     renderPrimaryFeature(storyData[0]);
@@ -114,20 +71,19 @@ function renderHome () {
   }
 };
 
-// function renderTitle(title) {
-//   $('.content').append('<h1>' + title + '</h1>')
-// }
-
 // render primary feature on home page
 function renderPrimaryFeature(articleData) {
+  // add div for "hero" area
   $('.feature-primary').append('<div class="hero"></div>');
 
+  // add clickable thumbnail image
   $('.feature-primary .hero').append(
     '<a data-id="0" class="img-link" href="' + articleData.web_url + '">' +
     '<img class="thumbnail" src="' + getThumbnail(articleData) + '"/>' +
     '</a>'
   );
 
+  // add clickable headline
   $('.feature-primary .hero').append(
     '<h2 class="title"><a data-id="0" href="' +
     articleData.web_url + '">' +
@@ -135,6 +91,7 @@ function renderPrimaryFeature(articleData) {
     '</a></h2>'
   );
 
+  // add byline
   $('.feature-primary .hero').append(
     '<p class="byline"><span class="author">' +
     articleData.byline.original.toLowerCase() +
@@ -143,8 +100,7 @@ function renderPrimaryFeature(articleData) {
     '</span></p>'
   );
 
-  $('.feature-primary .hero').append('<div class="clearfix"></div>');
-
+  // add lead paragraph
   $('.feature-primary').append(
     '<p class="lead-para">' +
     articleData.lead_paragraph +
@@ -158,7 +114,7 @@ function renderSecondaryFeatures(articles) {
   $('.features-secondary').append('<div class="clearfix"></div>');
 };
 
-// render secondary feature
+// render secondary feature component
 function renderSecondaryFeature(articleData, i) {
   // create secondary feature div
   $('.features-secondary').append('<div class="feature-secondary"></div>');
@@ -210,6 +166,7 @@ function renderArticle(articleData, i) {
     '<p class="lead-para">' + articleData.lead_paragraph + '</p>'
   );
 
+  // add byline if there is one. if no byline, use source
   if (articleData.byline.original) {
     $(articleDiv).append(
       '<span class="byline"><span class="author">' +
@@ -227,7 +184,6 @@ function renderArticle(articleData, i) {
       '</span></p>'
     );
   }
-
 }
 
 // return url to thumbnail if there is one or else return default placeholder
@@ -242,17 +198,38 @@ function getThumbnail (articleData) {
   }
 };
 
-// return formatted UTC datestamp
+// return formatted UTC timestamp
 function formatTimestamp(dateString) {
   const date = new Date(dateString);
   const options = {
-    // year: "numeric",
-    // month: "long",
-    // day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
     timeZoneName: "short"
   };
 
   return date.toLocaleTimeString("en-us", options);
+};
+
+// override default link behavior and show article at event.target.href
+function showArticle(event) {
+  const i = $(event.currentTarget).data('id');
+  const articleData = storyData[i];
+
+  event.preventDefault();
+
+  $('.content').html(
+    '<div class="breadcrumbs"><span><a href="#">Home</a><span class="chevron"><span> > </span></span><span class="title">'+ articleData.headline.main + '</span></div>'
+  );
+
+  $('.content').append('<h1>' + articleData.headline.main + '</h1>');
+
+  $('.content').append(
+    '<p class="article-byline"><span class="author">' +
+    articleData.byline.original.toLowerCase() +
+    '</span> <span class="timestamp">' +
+    formatTimestamp(articleData.pub_date) +
+    '</span></p>'
+  );
+
+  $('.content').append('<iframe id="iframe" height="100%" src="' + articleData.web_url + '"></iframe>');
 };
