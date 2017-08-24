@@ -8,36 +8,36 @@ $secondary-column-width: ($secondary-feature-width + $margin-default);
 $thumbnail-size: 225px;
 
 // font variables
-$font-size-base: 16px;
-$font-size-logo: 24px;
 $font-family-base: 'Open Sans';
 $font-family-serif: 'Source Serif Pro';
+$font-size-base: 16px;
 $font-size-byline: 14px;
-$line-height-base: 1.4;
-$font-weight-bold: 600;
+$font-size-logo: 24px;
 $font-size-title: 22px;
+$font-weight-bold: 600;
+$line-height-base: 1.4;
 
 // color variables
 $black: #000;
-$white: #fff;
+$byline-color: #aaacac;
+$feature-shade: #c1c9d5;
 $header-background: #263238;
 $header-color: #fff;
-$feature-shade: #c1c9d5;
-$byline-color: #aaacac;
-$timestamp-color: #001157;
 $input-background: #3c464c;
 $nav-active-color: #0091db;
+$shadow-color: rgba(237, 237, 237, .75);
+$timestamp-color: #001157;
+$white: #fff;
 
 // shadow varialbes
-$shadow-color: rgba(237, 237, 237, .75);
-$nav-shadow: 0 3px 3px $shadow-color;
 $article-shadow: 0 0 3px 3px $shadow-color;
+$nav-shadow: 0 3px 3px $shadow-color;
 
 // layout variables
-$one-third: 33.33%;
 $one-sixth: 16.666%;
+$one-third: 33.33%;
 
 // input field variables
 $input-border-radius: 21px;
 $input-height: 42px;
-$input-width: 170px;
+$input-width: 140px;

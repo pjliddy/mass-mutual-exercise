@@ -14,14 +14,57 @@ function handleEvents() {
   $(document).on('click', '.title a', showArticle);
   $(document).on('click', '.img-link', showArticle);
   $(document).on('click', '.nav-icon', toggleNav);
+  $(document).on('click', '.breadcrumbs a', renderHome);
+  // $('#iframe').load(setIframeHeight);
+  // $('#iframe').ready(setIframeHeight);
 };
+
+function setIframeHeight() {
+  console.log ('iframe loaded');
+
+  // const frame = $('#iframe');
+  // frame.height(frame.contents().height());
+  // frame.height(frame.contents().height());
+
+  // var iFrame = $('iframe');
+  //
+  // $(iFrame).height( $(iFrame).contents().find("body").height() );
+  // if(iFrame) {
+  //   // here you can make the height, I delete it first, then I make it again
+  //   iFrame.height = "";
+  //   iFrame.height = iFrame.contentWindow.document.body.scrollHeight + "px";
+  // }
+}
 
 // override default link behavior and show article at event.target.href
 function showArticle(event) {
+  // const element = $(event.currentTarget).get(0);
+  const i = $(event.currentTarget).data('id');
+  const articleData = storyData[i];
+
   event.preventDefault();
-  console.log(event.currentTarget.href);
+
+  $('.content').html(
+    '<div class="breadcrumbs"><span><a href="#">Home</a><span class="chevron"><span> > </span></span><span class="title">'+ articleData.headline.main + '</span></div>'
+  );
+
+  $('.content').append('<h1>' + articleData.headline.main + '</h1>');
+
+  $('.content').append(
+    '<p class="article-byline"><span class="author">' +
+    articleData.byline.original.toLowerCase() +
+    '</span> <span class="timestamp">' +
+    formatTimestamp(articleData.pub_date) +
+    '</span></p>'
+  );
+  // $('.content').append('<div class="iframe-container"></div>');
+
+  $('.content').append('<iframe id="iframe" height="100%" src="' + articleData.web_url + '"></iframe>');
+
+  $('#iframe').ready(setIframeHeight);
 };
 
+// toggle responsive nav
 function toggleNav () {
   console.log('toggle nav');
   if ($('nav ul').hasClass('responsive')) {
@@ -50,7 +93,13 @@ function getData (url) {
 };
 
 function renderHome () {
-  $('h1').html('Top Stories');
+  $('.content').html('<h1>Top Stories</h1>');
+  $('.content').append('<div class="feature-primary"></div>');
+  $('.content').append('<div class="features-secondary"></div>');
+  $('.content').append('<div class="clearfix"></div>');
+  $('.content').append('<div class="article-list"></div>');
+
+  // $('h1').html('Top Stories');
   // render primary featured article
   if (storyData.length > 0) {
     renderPrimaryFeature(storyData[0]);
@@ -74,13 +123,13 @@ function renderPrimaryFeature(articleData) {
   $('.feature-primary').append('<div class="hero"></div>');
 
   $('.feature-primary .hero').append(
-    '<a class="img-link" href="' + articleData.web_url + '">' +
+    '<a data-id="0" class="img-link" href="' + articleData.web_url + '">' +
     '<img class="thumbnail" src="' + getThumbnail(articleData) + '"/>' +
     '</a>'
   );
 
   $('.feature-primary .hero').append(
-    '<h2 class="title"><a href="' +
+    '<h2 class="title"><a data-id="0" href="' +
     articleData.web_url + '">' +
     articleData.headline.main +
     '</a></h2>'
@@ -119,7 +168,7 @@ function renderSecondaryFeature(articleData, i) {
 
   // add HTML elements for feature
   $(articleDiv).append(
-    '<h2 class="title"><a href="' + articleData.web_url + '">' + articleData.headline.main + '</a></h2>'
+    '<h2 class="title"><a data-id="' + (i + 1) + '" href="' + articleData.web_url + '">' + articleData.headline.main + '</a></h2>'
   );
 
   $(articleDiv).append(
@@ -146,13 +195,13 @@ function renderArticle(articleData, i) {
 
   // add HTML elements for article
   $(articleDiv).append(
-    '<a class="img-link" href="' + articleData.web_url + '">' +
+    '<a data-id="' + (i + 2) + '" class="img-link" href="' + articleData.web_url + '">' +
     '<img class="thumbnail" src="' + getThumbnail(articleData) + '"/>' +
     '</a>'
   );
 
   $(articleDiv).append(
-    '<h2 class="title"><a href="' + articleData.web_url + '">' +
+    '<h2 class="title"><a data-id="' + (i + 2) + '" href="' + articleData.web_url + '">' +
     articleData.headline.main +
     '</a></h2>'
   );

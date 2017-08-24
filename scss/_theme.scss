@@ -4,9 +4,9 @@ body,
 html {
   font-family: $font-family-base;
   font-size: $font-size-base;
+  height: 100%;
   line-height: $line-height-base;
   margin: $margin-none;
-  // height:100%;
 }
 
 div {
@@ -26,8 +26,8 @@ h6 {
 
 a {
   color: $black;
-  text-decoration: none;
   cursor: pointer;
+  text-decoration: none;
 }
 
 a:hover {
@@ -38,6 +38,7 @@ a:hover {
   clear: both;
 }
 // Header Styles
+
 header {
   background: $header-background;
   box-sizing: border-box;
@@ -60,38 +61,63 @@ header {
   }
 
   .header-right {
+    padding-right: 30px;
     vertical-align: middle;
-
-    input {
-      background-color: $input-background;
-      border-radius: $input-border-radius;
-      border: 0;
-      box-sizing: border-box;
-      color: $white;
-      float: right;
-      height: $input-height;
-      margin-right: $margin-default;
-      padding: 0 8px;
-      width: $input-width;
-    }
   }
 }
+
+.search-input {
+  display: none;
+  float: right;
+  margin: 0;
+  position: relative;
+  top: -4px;
+
+  input {
+    // margin: 0 $margin-default 0 0;
+    // padding-left: 40px;
+    background-color: $input-background;
+    border: 0;
+    border-radius: $input-border-radius;
+    color: $white;
+    font-size: $font-size-byline;
+    font-weight: 600;
+    height: $input-height;
+    max-width: $input-width;
+    padding: 0 40px;
+  }
+
+  input::placeholder {
+    color: $white;
+  }
+
+  img {
+    bottom: 10px;
+    left: 10px;
+    position: absolute;
+  }
+}
+
+@media(min-width: 640px) {
+  .search-input {
+    display: block;
+  }
+}
+
 // Navbar Styles
+
 nav {
   box-shadow: $nav-shadow;
   height: auto;
   min-height: 50px;
-  // overflow: hidden;
   text-align: center;
-  // position: relative;
 
   .nav-icon {
     display: inline-block;
-    // float: right;
+    line-height: 50px;
+    margin-right: $margin-default;
     position: absolute;
     right: 0;
-    margin-right: $margin-default;
-    line-height: 50px;
   }
 
   ul {
@@ -102,19 +128,11 @@ nav {
     padding: 0;
 
     li {
-      // display:none;
-      // float: left;
-      // margin-right: 1px;
       a {
-        // min-width:140px;
-        height: 50px;
-        text-align: center;
-        line-height: 50px;
         font-weight: 600;
-        // font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        // color: #fff;
-        // background: #2f3036;
-        // text-decoration: none;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
       }
     }
   }
@@ -124,24 +142,32 @@ nav {
     height: auto;
     padding-top: 50px;
 
-    li {
-      a {
-        // display: block;
-      }
-    }
     li:first-of-type {
       border-top: 1px solid $shadow-color;
     }
+  }
+
+  .active a{
+    border-bottom: 3px solid $nav-active-color;
+    padding: 6px 30px;
+  }
+
+  .search-input {
+    display: block;
+    float: left;
+    margin-left: 30px;
+    top: 4px;
   }
 }
 
 @media(min-width: 640px) {
   nav {
     ul {
-      margin: 0 $margin-default;
       display: block;
+      margin: 0 $margin-default;
 
       li {
+        box-sizing: border-box;
         display: inline-block;
         width: calc(100% / 6);
 
@@ -154,18 +180,22 @@ nav {
     .nav-icon {
       display: none;
     }
+
+    .active {
+      border-bottom: 3px solid $nav-active-color;
+    }
+
+    .active a{
+      border-bottom: 0;
+      padding: 0;
+    }
+
+    .search-input {
+      display: none;
+    }
   }
-  // nav {
-  //   a {
-  //     display: block;
-  //   }
-  //
-  //   .nav-icon {
-  //     display: none;
-  //   }
-  //
-  // }
 }
+
 @media(min-width: 1260px) {
   nav {
     ul {
@@ -174,12 +204,14 @@ nav {
     }
   }
 }
+
 // Content Area Styles
 
 .content {
   margin: 0 $margin-default;
   max-width: 1200px;
 }
+
 @media(min-width:1260px) {
   .content {
     margin: 0 auto;
@@ -207,7 +239,9 @@ h2 {
 .thumbnail {
   object-fit: cover;
 }
+
 // Primary Feature Styles
+
 .feature-primary {
   box-shadow: $article-shadow;
   margin-bottom: $margin-default;
@@ -228,7 +262,6 @@ h2 {
 
     img {
       display: none;
-      // display: inline-block;
       float: right;
       height: 157px;
       margin-left: 20px;
@@ -242,7 +275,9 @@ h2 {
     padding: 24px 20px;
   }
 }
+
 // Secondary Feature Styles
+
 .features-secondary {
   .feature-secondary {
     box-shadow: $article-shadow;
@@ -272,7 +307,9 @@ h2 {
     margin-top: $margin-default;
   }
 }
+
 // Article List Styles
+
 .article-list {
   .article {
     box-shadow: $article-shadow;
@@ -303,7 +340,9 @@ h2 {
     }
   }
 }
+
 // Responsive Content Layout Styles
+
 @media(min-width: 520px) {
   .feature-primary .hero img {
     display: inline-block;
@@ -333,6 +372,7 @@ h2 {
     }
   }
 }
+
 @media(min-width:640px) {
   .feature-primary {
     margin-bottom: $margin-default;
@@ -353,6 +393,7 @@ h2 {
     margin-bottom: 0;
   }
 }
+
 @media(min-width:920px) {
   .feature-primary {
     float: left;
@@ -391,4 +432,48 @@ h2 {
       }
     }
   }
+}
+
+// Article iFrame Styles
+.iframe-container {
+  border: 1px solid $black;
+  height: 100vh;
+  // height: auto;
+  // position: relative;
+  // margin: 0;
+  // min-height: 100vh;
+  // width: 100%;
+  // overflow: hidden;
+  // max-width: 1170px;
+}
+
+iframe {
+  border: 1px solid $black;
+  display: block;
+  height: 100vh;
+  margin: 0 0 $margin-default;
+  // max-width: 1200px;
+  // overflow: hidden;
+  // position: relative;
+  width: 100%;
+}
+
+.breadcrumbs {
+  font-weight: 600;
+  margin: $margin-default 0 0;
+
+  a {
+    color: $nav-active-color;
+  }
+
+  .chevron {
+    color: $byline-color;
+    font-weight: 400;
+    padding: 0 6px;
+  }
+}
+
+.article-byline {
+  font-size: $font-size-byline;
+  margin-top: -20px;
 }
